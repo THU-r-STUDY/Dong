@@ -1,3 +1,2 @@
-my_list = [1,2,3,4,5]
-my_list[4] = 6
-print(my_list)
+print([x+1 for x in range(10)])
+print([[x + 1]*4 for x in range(10)]) # 4 * 10의 배열생성
