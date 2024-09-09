@@ -1,14 +1,26 @@
-def bubbleSort(arr):
-    if not isinstance(arr, list):
-        return None
-    if len(arr) == 0:
-        return 0
-    if arr is None:
-        return None
+def solution(answers):
+    patterns = [[1,2,3,4,5],
+                [2,1,2,3,2,4,2,5],
+                [3,3,1,1,2,2,4,4,5,5]]
     
-    n = len(arr)
-    for i in range(n):
-        for j in range(n - i - 1):
-            if arr[i] > arr[j + 1]:
-                arr[j], arr[j + 1] = arr[j + 1], arr[j]
-    return arr
+    scores = [0] * 3
+
+    #답과 패턴을 비교
+    for i, answer in enumerate(answers):
+        for j, pattern in enumerate(patterns): 
+            if answer == pattern[i % len(pattern)]:
+                scores[j] += 1
+    
+    #가장 높은 점수
+    max_score = max(scores)
+    #가장 높은 점수를 가진 패턴을 구하기
+    high_scores= []
+    
+    for i, score in enumerate(scores):
+        if max_score == score:
+            high_scores.append(i+1)
+
+    return high_scores
+
+answer = [1,2,3,4,5]
+print(solution(answer))
