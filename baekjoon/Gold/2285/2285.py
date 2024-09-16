@@ -1,40 +1,24 @@
 # 함수 정의
 import sys
 
-def Calc_left(p):  #이러면 리스트를 새로 넘겨주어야함
-    ds = 0
-    for x in range(len(p)):
-        ds += sum(p[ : x+1])
-    return ds
-
-
-def Calc_right(p):
-    ds = 0
-    for x in range(len(p)):
-        ds += sum(p[x : ])
-    return ds
-
-cot = int(input())              # 마을의 수 입력
-town = [None]*cot               # 마을 리스트
-people = [None]*cot             # 사람의 수 리스트
-dt = []                         # 최댓값 처리할 리스트
+cot = int(sys.stdin.readline())              # 마을의 수 입력
+sum = 0.0                         # 마을의 수의 합/2를 저장할 변수
+n = 0.0                           # 각 마을에 도착할때마다 각 마을의 사람수를 더하는 변수
+dt = [0]*cot
 
 
 for x in range(cot):   # 마을수와 사람수를 입력
-    town[x], people[x] = map(int, sys.stdin.readline().split())
+    dt[x] = list(map(int, sys.stdin.readline().split()))
 
-for i in range(len(people)):
-    #왼쪽리스트 생성
-    if i == 0:
-        dt.append(Calc_right(people[i+1 : ]))
-    elif i == len(people):
-        dt.append(Calc_left(people[ : i]))
-    else:
-        dt.append(Calc_left(people[ : i]) + Calc_right(people[i-1: ]))
+dt.sort()              # 정렬
 
-dt_max = max(dt)
+for a in dt:
+    sum += a[1]
+else:
+    sum = sum / 2
 
-for x in range(len(dt)):
-    if dt_max == dt[x]:
-        print(x+1)
+for ans in dt:
+    n += ans[1]
+    if n >= sum:
+        print(ans[0])
         break
