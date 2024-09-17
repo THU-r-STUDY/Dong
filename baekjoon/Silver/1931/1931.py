@@ -5,7 +5,7 @@ n = 0
 for i in range(cot):    # 회의 시작 시간, 끝나는 시간 리스트로 받기
     dta[i] = list(map(int, input().split()))
 
-dta.sort(key=lambda x : x[1])              #회의끝나는 시간 기준으로 정렬
+dta.sort(key=lambda x : (x[1], x[0]))             #회의끝나는 시간 기준으로 정렬
 
 while n < len(dta) - 1:
     if dta[n][1] > dta[n+1][0]:        # 끝나는 시간, 시작 시간
