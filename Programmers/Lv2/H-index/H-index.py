@@ -1,18 +1,16 @@
 def solution(c):
     size_c = len(c)
-    tmp = 0
-    for i in range(size_c):
+    tmp = list()
+    for i in range(size_c+1):
         t = 0
         for j in c:
             if i <= j:
                 t += 1
         else:
-            if t >= i:
-                tmp = t
+            if t >= i:  
+                tmp.append(i)
             else:
                 break
-    if size_c == 1:
-        tmp = 0
-    elif tmp == size_c:
-        return c[0]
+                
+    tmp = max(tmp)
     return tmp
